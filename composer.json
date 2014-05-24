@@ -1,0 +1,26 @@
+{
+    "name": "poirot/datetime",
+    "description": "DateTime API that support for various calendars such as jalali calendar (shamsi) and islamic calendar.",
+    "authors": [
+        {
+            "name": "Payam Naderi",
+            "email": "naderi.payam@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "Poirot": "/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.raya-media.com/"
+        }
+    ]
+}
