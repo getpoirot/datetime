@@ -2,26 +2,15 @@
 namespace Poirot\Datetime\Calendar;
 
 use Poirot\Datetime\CalendarInterval;
-use Poirot\Datetime\LocalizeCalendar;
 
 /**
  * Class PersianCalendar
  *
  * @package Poirot\Datetime\Calendar
  */
-class PersianCalendar extends LocalizeCalendar
+class PersianCalendar implements CalendarInterface
 {
     protected $name = 'persian';
-
-    protected $dayOfWeeks = array(
-        'sat' => array(1, 'شنبه'),
-        'sun' => array(2, 'یکشنبه'),
-        'mon' => array(3, 'دوشنبه'),
-        'tue' => array(4, 'سه شنبه'),
-        'wed' => array(5, 'چهارشنبه'),
-        'thu' => array(6, 'پنجشنبه'),
-        'fri' => array(7, 'جمعه')
-    );
 
     /**
      * Get calendar system name
@@ -32,6 +21,136 @@ class PersianCalendar extends LocalizeCalendar
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Get array of narrow textual representation of a day
+     * sorted by first day of week to end.
+     *
+     * @param string|int $day (string)Mon through Sun|(int) 1 for Monday through 7
+     *
+     * @return array|string
+     */
+    public function getWeekDayNamesNarrow($day = null)
+    {
+        $dayOfWeeks = array(
+            'sat' => 'ش',
+            'sun' => 'ی',
+            'mon' => 'د',
+            'tue' => 'س',
+            'wed' => 'چ',
+            'thu' => 'پ',
+            'fri' => 'ج'
+        );
+
+        $return = ($day == null) ? $dayOfWeeks : false;
+
+        $day = (is_string($day)) ? strtolower($day) : $day;
+
+        if (is_string($day) && isset($dayOfWeeks[$day])) {
+            $return = $dayOfWeeks[$day];
+        } elseif(is_int($day)) {
+            // get with index
+            $arrayKeys = array_keys($dayOfWeeks);
+            $return    = $dayOfWeeks[$arrayKeys[$day]];
+        }
+
+        return $return;
+    }
+
+    /**
+     * Get array of textual representation of a day
+     * sorted by first day of week to end.
+     *
+     * @param string|int $day (string)Mon through Sun|(int) 1 for Monday through 7
+     *
+     * @return array|string|false
+     */
+    public function getWeekDayNames($day = null)
+    {
+        $dayOfWeeks = array(
+            'sat' => 'شنبه',
+            'sun' => 'یکشنبه',
+            'mon' => 'دوشنبه',
+            'tue' => 'سه شنبه',
+            'wed' => 'چهارشنبه',
+            'thu' => 'پنجشنبه',
+            'fri' => 'جمعه'
+        );
+
+        $return = ($day == null) ? $dayOfWeeks : false;
+
+        $day = (is_string($day)) ? strtolower($day) : $day;
+
+        if (is_string($day) && isset($dayOfWeeks[$day])) {
+            $return = $dayOfWeeks[$day];
+        } elseif(is_int($day)) {
+            // get with index
+            $arrayKeys = array_keys($dayOfWeeks);
+            $return    = $dayOfWeeks[$arrayKeys[$day]];
+        }
+
+        return $return;
+    }
+
+    /**
+     * Short textual representation of a month, such as January or March
+     *
+     * @param int $month
+     *
+     * @return array|string
+     */
+    public function getMonthNamesNarrow($month = null)
+    {
+        return $this->getMonthNames($month);
+    }
+
+    /**
+     * Full textual representation of a month, such as January or March
+     *
+     * @param int $month
+     *
+     * @return array|string
+     */
+    public function getMonthNames($month = null)
+    {
+        $months = array(
+            'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
+        );
+
+        $return = ($month == null) ? $months : false;
+
+        return isset($months[$month]) ? $months[$month] : $return;
+    }
+
+    /**
+     * Get day periods narrow name
+     *
+     * @param string|null $val am pm
+     *
+     * @return array|string
+     */
+    public function getDayPeriodsNarrow($val = null)
+    {
+        $val = strtolower($val);
+
+        return ($val == 'am') ? 'ق.ظ'
+            : ($val == 'pm') ? 'ب.ظ' : false;
+    }
+
+    /**
+     * Get day periods name
+     *
+     * @param string|null $val am pm
+     *
+     * @return array|string
+     */
+    public function getDayPeriods($val = null)
+    {
+        $val = strtolower($val);
+
+        return ($val == 'am') ? 'قبل از ظهر'
+            : ($val == 'pm') ? 'بعد از ظهر' : false;
     }
 
     /**

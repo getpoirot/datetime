@@ -2,7 +2,7 @@
 namespace Poirot;
 
 use \DateTime as SplDateTime;
-use Poirot\Datetime\CalendarInterface;
+use Poirot\Datetime\Calendar\CalendarInterface;
 
 /**
  * Class DateTime
@@ -162,7 +162,7 @@ class DateTime extends SplDateTime
      *
      * @return $this
      */
-    public function setCalendarSystem(CalendarInterface $calendar)
+    public function setCalendar(CalendarInterface $calendar)
     {
         $this->calendar = $calendar;
 

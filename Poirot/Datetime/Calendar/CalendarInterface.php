@@ -1,5 +1,5 @@
 <?php
-namespace Poirot\Datetime;
+namespace Poirot\Datetime\Calendar;
 
 /**
  * Interface CalendarInterface
