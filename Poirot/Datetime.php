@@ -51,6 +51,7 @@ class DateTime extends SplDateTime
 
         $calendar = $this->getCalendar();
         $replacedKv = array(); // replaced key value with equal format character
+        $val = '';
         foreach($reqFormat as $fchar) {
             switch ($fchar) {
                 case 'd':
@@ -138,10 +139,10 @@ class DateTime extends SplDateTime
                     break;
                 //Timezone
                 case 'e':
-                    $val = self::format('e');
+                    $val = parent::format('e');
                     break;
                 case 'T':
-                    $val = self::format('T');
+                    $val = parent::format('T');
                     break;
                 default:
                     $val = parent::format($fchar);

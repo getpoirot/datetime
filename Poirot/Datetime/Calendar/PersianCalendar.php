@@ -115,7 +115,7 @@ class PersianCalendar implements CalendarInterface
     public function getMonthNames($month = null)
     {
         $month = $month-1;
-        
+
         $months = array(
             'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
         );
