@@ -1,10 +1,10 @@
 <?php
-namespace Poirot\Datetime;
+namespace Poirot\DateTime;
 
 /**
  * Class CalendarInterval
  *
- * @package Poirot\Datetime
+ * @package Poirot\DateTime
  */
 class CalendarInterval
 {

@@ -1,12 +1,12 @@
 <?php
-namespace Poirot\Datetime\Calendar;
+namespace Poirot\DateTime\Calendar;
 
-use Poirot\Datetime\CalendarInterval;
+use Poirot\DateTime\CalendarInterval;
 
 /**
  * Class PersianCalendar
  *
- * @package Poirot\Datetime\Calendar
+ * @package Poirot\DateTime\Calendar
  */
 class PersianCalendar implements CalendarInterface
 {

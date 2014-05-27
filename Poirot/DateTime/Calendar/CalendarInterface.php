@@ -1,10 +1,11 @@
 <?php
-namespace Poirot\Datetime\Calendar;
+namespace Poirot\DateTime\Calendar;
+use Poirot\DateTime\CalendarInterval;
 
 /**
  * Interface CalendarInterface
  *
- * @package Poirot\Datetime
+ * @package Poirot\DateTime
  */
 interface CalendarInterface
 {

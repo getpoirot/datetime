@@ -2,7 +2,7 @@
 namespace Poirot;
 
 use \DateTime as SplDateTime;
-use Poirot\Datetime\Calendar\CalendarInterface;
+use Poirot\DateTime\Calendar\CalendarInterface;
 
 /**
  * Class DateTime
