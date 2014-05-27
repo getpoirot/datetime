@@ -8,7 +8,7 @@ use Poirot\DateTime\CalendarInterval;
  *
  * @package Poirot\DateTime\Calendar
  */
-class PersianCalendar implements CalendarInterface
+class Persian implements CalendarInterface
 {
     protected $name = 'persian';
 
