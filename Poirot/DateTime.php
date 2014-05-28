@@ -67,9 +67,10 @@ class DateTime extends SplDateTime
                     $val = $calendar->getWeekDayNames(parent::format('D'));
                     break;
                 case 'S':
-                    $val = 'ام'; /* @TODO: Get from calendar */
+                    $val = $calendar->getMonthSuffix();
+                    $val = ($val) ? $val : parent::format('S');
                     break;
-                case 'w': // start from Sunday as 0
+                case 'w': // start week from 0
                     $weekDayNames = $calendar->getWeekDayNames();
                     $dayOfWeek    = strtolower(parent::format('D'));
 
@@ -82,12 +83,9 @@ class DateTime extends SplDateTime
 
                     $val = $i;
                     break;
-                case 'z': /* @TODO: Get from calendar, Day of Year */
-                    if ($month > 6)
-                        $val = 186 + (($month - 6 - 1) * 30) + $day;
-                     else
-                        $val = (($month - 1) * 31) + $day;
-
+                case 'z':
+                    $val = $calendar->calculateDayOfYear($month, $day);
+                    $val = ($val) ? $val : parent::format('z');
                     break;
                 case 'W':
                     $val = is_int((int)$this->format('z') / 7) ? ((int)$this->format('z') / 7) : intval((int)$this->format('z') / 7 + 1);
@@ -104,11 +102,9 @@ class DateTime extends SplDateTime
                 case 'n':
                     $val = $month;
                     break;
-                case 't': /* @TODO: Get from calendar, Number of days in the given month */
-                    if ($month >= 1 && $month <= 6) $val = 31;
-                    else if ($month >= 7 && $month <= 11) $val = 30;
-                    else if($month == 12 && $year % 4 ==3) $val = 30;
-                    else if ($month == 12 && $year % 4 !=3) $val = 29;
+                case 't':
+                    $val = $calendar->getNumberOfDaysInMonth($month, $year);
+                    $val = ($val) ? $val : parent::format('t');
                     break;
                 case 'L': /* @TODO: Must test */
                     $tmpObj = new DateTime('@'.(time()-31536000));

@@ -24,6 +24,38 @@ class Persian implements CalendarInterface
     }
 
     /**
+     * English ordinal suffix for the day of the month, 2 characters
+     * exp. st, nd, rd or th. Works well with j char format
+     * @note return null if there is no specific suffix
+     *
+     * @return string|null
+     */
+    public function getMonthSuffix()
+    {
+        return 'ام';
+    }
+
+    /**
+     * Number of days in the given month
+     *
+     * @param int $month Month
+     * @param int $year Year
+     *
+     * @return int
+     */
+    public function getNumberOfDaysInMonth($month, $year)
+    {
+        $return = null;
+
+        if ($month >= 1 && $month <= 6) $return = 31;
+        else if ($month >= 7 && $month <= 11) $return = 30;
+        else if($month == 12 && $year % 4 ==3) $return = 30;
+        else if ($month == 12 && $year % 4 !=3) $return = 29;
+
+        return $return;
+    }
+
+    /**
      * Get array of narrow textual representation of a day
      * sorted by first day of week to end.
      *
@@ -214,5 +246,23 @@ class Persian implements CalendarInterface
     private static function div($a, $b)
     {
         return (int) ($a / $b);
+    }
+
+    /**
+     * Which The day of the year (starting from 0)
+     * exp. 0 through 365
+     * @note return null mean datetime must use default value
+     *
+     * @return int|null
+     */
+    public function calculateDayOfYear($month, $day)
+    {
+        if ($month > 6) {
+            $return = 186 + (($month - 6 - 1) * 30) + $day;
+        } else {
+            $return = (($month - 1) * 31) + $day;
+        }
+
+        return $return;
     }
 }
